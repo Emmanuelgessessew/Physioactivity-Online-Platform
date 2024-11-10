@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="employer.css" />
+    <title>PhysioActivity - Employer Portal</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">PhysioActivity</a>
+        <nav>
+          <ul>
+            <li><a href="#" id="logoutLink">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Employer Portal Section -->
+    <section class="employer-portal">
+      <h2>Employee Physiotherapy Requests</h2>
+
+      <!-- Requests Table -->
+      <table id="requestsTable">
+        <thead>
+          <tr>
+            <th>Employee Name</th>
+            <th>Work ID</th>
+            <th>Preferred Date</th>
+            <th>Preferred Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Employee Requests -->
+          <tr>
+            <td>Mohammed Salah</td>
+            <td>EMP123</td>
+            <td>2024-11-15</td>
+            <td>10:00 AM</td>
+            <td>
+              <button class="accept-btn">Accept</button>
+              <button class="decline-btn">Decline</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Jurgen Klopp</td>
+            <td>EMP456</td>
+            <td>2024-11-16</td>
+            <td>2:00 PM</td>
+            <td>
+              <button class="accept-btn">Accept</button>
+              <button class="decline-btn">Decline</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Steven Gerrard</td>
+            <td>EMP789</td>
+            <td>2024-11-17</td>
+            <td>9:00 AM</td>
+            <td>
+              <button class="accept-btn">Accept</button>
+              <button class="decline-btn">Decline</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Sadio Mane</td>
+            <td>EMP101</td>
+            <td>2024-11-18</td>
+            <td>3:30 PM</td>
+            <td>
+              <button class="accept-btn">Accept</button>
+              <button class="decline-btn">Decline</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Roberto Firmino</td>
+            <td>EMP202</td>
+            <td>2024-11-19</td>
+            <td>11:15 AM</td>
+            <td>
+              <button class="accept-btn">Accept</button>
+              <button class="decline-btn">Decline</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 PhysioActivity. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="employer.js"></script>
+  </body>
+</html>

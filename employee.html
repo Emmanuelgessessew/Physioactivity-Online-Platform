@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="employee.css" />
-    <title>PhysioActivity - Employee Recommendations</title>
+    <title>PhysioActivity - Employee Portal</title>
   </head>
   <body>
     <!-- Navbar -->
@@ -13,37 +13,48 @@
         <a href="index.html" class="logo">PhysioActivity</a>
         <nav>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="signup.html">Sign Up</a></li>
+            <li id="notifications" class="dropdown">
+              <button id="notificationButton">Notifications</button>
+              <div id="notificationDropdown" class="dropdown-content">
+                <p><strong>Employer:</strong> Your last request was accepted.</p>
+                <p><strong>Employer:</strong> Your preferred time has been adjusted.</p>
+                <p><strong>Therapist:</strong> Please stretch before your next session.</p>
+              </div>
+            </li>
+            <li><a href="#" id="logoutLink">Logout</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <!-- Employee Health Input Section -->
-    <section class="employee-health">
-      <div class="container">
-        <h2>Health Information Input</h2>
-        <form id="healthForm">
-          <textarea
-            id="healthDetails"
-            placeholder="Enter your health issues here..."
-            required
-          ></textarea>
-          <button type="submit">Get Recommendations</button>
-        </form>
+    <!-- Employee Portal Section -->
+    <section class="employee-portal">
+      <h2>Employee Physiotherapy Request</h2>
+      <form id="physioForm">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required />
 
-        <h3>Your Recommendations:</h3>
-        <ul id="recommendationList"></ul>
+        <label for="workId">Work ID</label>
+        <input type="text" id="workId" placeholder="Enter your work ID" required />
 
-        <p>
-          By using this service, you agree to our
-          <a href="terms.html" target="_blank">Terms and Conditions</a>.
-        </p>
-      </div>
+        <label for="date">Preferred Date</label>
+        <input type="date" id="date" required />
+
+        <label for="time">Preferred Time</label>
+        <input type="time" id="time" required />
+
+        <button type="submit">Send Request</button>
+      </form>
+
+      <h2>Describe Your Pain or Feelings</h2>
+      <form id="painForm">
+        <textarea
+          id="painDescription"
+          placeholder="Describe your pain or feelings..."
+          required
+        ></textarea>
+        <button type="submit">Send to Therapist</button>
+      </form>
     </section>
 
     <!-- Footer -->
