@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+    <title>PhysioActivity - Sign Up</title>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">PhysioActivity</a>
+            <nav>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="signup">
+        <div class="container">
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <select id="role" required>
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="employee">Employee</option>
+                    <option value="hr">HR</option>
+                    <option value="therapist">Therapist</option>
+                </select>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Terms and Conditions Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <h2>Terms and Conditions</h2>
+            <ol>
+                <li>Users are responsible for maintaining the confidentiality of their account.</li>
+                <li>Users must not share their login credentials with others.</li>
+                <li>PhysioActivity provides tools for physiotherapy management and does not substitute for medical advice.</li>
+                <li>Users must ensure the accuracy of provided information.</li>
+                <li>Your personal information will be handled as per our Privacy Policy.</li>
+                <li>Requests for physiotherapy scheduling are subject to employer approval.</li>
+                <li>PhysioActivity reserves the right to suspend or terminate accounts that violate terms.</li>
+            </ol>
+            <div class="modal-buttons">
+                <button id="acceptTerms">Accept</button>
+                <button id="declineTerms">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 PhysioActivity. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="signup.js"></script>
+</body>
+</html>
