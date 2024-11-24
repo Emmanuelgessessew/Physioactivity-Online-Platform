@@ -1,69 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/employee.css') }}">
     <title>PhysioActivity - Employee Portal</title>
-  </head>
-  <body>
+</head>
+<body>
     <!-- Navbar -->
     <header class="navbar">
-      <div class="container">
-        <a href="index.html" class="logo">PhysioActivity</a>
-        <nav>
-          <ul>
-            <li id="notifications" class="dropdown">
-              <button id="notificationButton">Notifications</button>
-              <div id="notificationDropdown" class="dropdown-content">
-                <p><strong>Employer:</strong> Your last request was accepted.</p>
-                <p><strong>Employer:</strong> Your preferred time has been adjusted.</p>
-                <p><strong>Therapist:</strong> Please stretch before your next session.</p>
-              </div>
-            </li>
-            <li><a href="#" id="logoutLink">Logout</a></li>
-          </ul>
-        </nav>
-      </div>
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="logo">PhysioActivity</a>
+            <nav>
+                <ul>
+                    <li id="notifications" class="dropdown">
+                        <button id="notificationButton">Notifications</button>
+                        <div id="notificationDropdown" class="dropdown-content">
+                            <p><strong>Employer:</strong> Your last request was accepted.</p>
+                            <p><strong>Employer:</strong> Your preferred time has been adjusted.</p>
+                            <p><strong>Therapist:</strong> Please stretch before your next session.</p>
+                        </div>
+                    </li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <!-- Employee Portal Section -->
     <section class="employee-portal">
-      <h2>Employee Physiotherapy Request</h2>
-      <form id="physioForm">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="Enter your name" required />
+        <h2>Employee Physiotherapy Request</h2>
+        <form id="physioForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required />
 
-        <label for="workId">Work ID</label>
-        <input type="text" id="workId" placeholder="Enter your work ID" required />
+            <label for="workId">Work ID</label>
+            <input type="text" id="workId" placeholder="Enter your work ID" required />
 
-        <label for="date">Preferred Date</label>
-        <input type="date" id="date" required />
+            <label for="date">Preferred Date</label>
+            <input type="date" id="date" required />
 
-        <label for="time">Preferred Time</label>
-        <input type="time" id="time" required />
+            <label for="time">Preferred Time</label>
+            <input type="time" id="time" required />
 
-        <button type="submit">Send Request</button>
-      </form>
+            <button type="submit">Send Request</button>
+        </form>
 
-      <h2>Describe Your Pain or Feelings</h2>
-      <form id="painForm">
-        <textarea
-          id="painDescription"
-          placeholder="Describe your pain or feelings..."
-          required
-        ></textarea>
-        <button type="submit">Send to Therapist</button>
-      </form>
+        <h2>Describe Your Pain or Feelings</h2>
+        <form id="painForm">
+            <textarea id="painDescription" placeholder="Describe your pain or feelings..." required></textarea>
+            <button type="submit">Send to Therapist</button>
+        </form>
     </section>
 
     <!-- Footer -->
     <footer>
-      <div class="container">
-        <p>&copy; 2024 PhysioActivity. All Rights Reserved.</p>
-      </div>
+        <div class="container">
+            <p>&copy; 2024 PhysioActivity. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script src="employee.js"></script>
-  </body>
+</body>
 </html>
