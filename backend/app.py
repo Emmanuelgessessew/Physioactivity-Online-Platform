@@ -32,6 +32,39 @@ class Request(db.Model):
 def index():
     return render_template('index.html')
 
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        role = request.form['role']
+
+        # Check if the username or email already exists
+        existing_user = User.query.filter_by(username=username).first()
+        existing_email = User.query.filter_by(email=email).first()
+
+        if existing_user:
+            flash("Username already exists. Please choose a different one.", 'error')
+            return redirect(url_for('signup'))
+
+        if existing_email:
+            flash("Email already exists. Please use a different email address.", 'error')
+            return redirect(url_for('signup'))
+
+        # Hash the password
+        hashed_password = generate_password_hash(password)
+
+        # Create new user
+        new_user = User(username=username, email=email, password=hashed_password, role=role)
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash("Account created successfully! Please log in.", 'success')
+        return redirect(url_for('login'))
+
+    return render_template('signup.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -79,6 +112,23 @@ def employer_dashboard():
         return redirect(url_for('login'))
     requests = Request.query.all()
     return render_template('employer.html', requests=requests)
+
+@app.route('/submit_request', methods=['POST'])
+def submit_request():
+    if request.method == 'POST':
+        employee_name = request.form['name']
+        work_id = request.form['workId']
+        preferred_date = request.form['preferred_date']
+        preferred_time = request.form['preferred_time']
+
+        # Create new request for the employee
+        new_request = Request(employee_name=employee_name, work_id=work_id,
+                              preferred_date=preferred_date, preferred_time=preferred_time)
+        db.session.add(new_request)
+        db.session.commit()
+
+        flash("Physiotherapy request submitted successfully.", 'success')
+        return redirect(url_for('employee_dashboard'))
 
 @app.route('/logout')
 def logout():
