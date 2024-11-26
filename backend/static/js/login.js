@@ -1,40 +1,53 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.getElementById("loginForm");
+    const loginForm = document.getElementById("loginForm");
 
-  loginForm.addEventListener("submit", (e) => {
-      e.preventDefault(); // Prevent the default form submission
+    loginForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent the default form submission
 
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const selectedRole = document.getElementById("role").value;
+        const email = document.getElementById("username").value;  // Make sure the field ID matches
+        const password = document.getElementById("password").value;
+        const selectedRole = document.getElementById("role").value;
 
-      if (!selectedRole) {
-          alert("Please select a role before logging in.");
-          return;
-      }
+        // Validate fields
+        if (!email || !password || !selectedRole) {
+            alert("Please fill in all fields.");
+            return;
+        }
 
-      // Retrieve user data from localStorage (optional validation)
-      const storedUser = localStorage.getItem(email);
+        // Retrieve user data from localStorage
+        const storedUser = localStorage.getItem(email);
 
-      if (storedUser) {
-          const user = JSON.parse(storedUser);
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
 
-          // Update session storage with the logged-in user's name and role
-          sessionStorage.setItem("loggedInName", name);
-          sessionStorage.setItem("loggedInRole", selectedRole);
+            // Validate password
+            if (user.password !== password) {
+                alert("Incorrect password.");
+                return;
+            }
 
-          // Redirect based on role
-          if (selectedRole === "employee") {
-              alert(`Welcome, ${name}! Redirecting to Employee Portal...`);
-              window.location.href = "employee.html";
-          } else if (selectedRole === "hr" || selectedRole === "therapist") {
-              alert(`Welcome, ${name}! Redirecting to Employer Portal...`);
-              window.location.href = "employer.html";
-          } else {
-              alert("Invalid role selected.");
-          }
-      } else {
-          alert("No account found with this email. Please sign up first.");
-      }
-  });
+            // Validate if the user selected the correct role
+            if (user.role !== selectedRole) {
+                alert("Role does not match the stored account information.");
+                return;
+            }
+
+            // Store user information in sessionStorage for the current session
+            sessionStorage.setItem("loggedInName", user.name);
+            sessionStorage.setItem("loggedInRole", user.role);
+
+            // Redirect based on role
+            if (user.role === "employee") {
+                alert(`Welcome, ${user.name}! Redirecting to Employee Portal...`);
+                window.location.href = "employee.html";  // Redirect to employee portal
+            } else if (user.role === "hr" || user.role === "therapist") {
+                alert(`Welcome, ${user.name}! Redirecting to Employer Portal...`);
+                window.location.href = "employer.html";  // Redirect to employer portal
+            } else {
+                alert("Invalid role selected.");
+            }
+        } else {
+            alert("No account found with this email. Please sign up first.");
+        }
+    });
 });

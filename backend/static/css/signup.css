@@ -12,6 +12,29 @@ body {
     padding: 10px 20px;
 }
 
+/* Flash messages styling */
+.flashes {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.flashes li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.flashes .success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flashes .error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
 .navbar .container {
     display: flex;
     justify-content: space-between;

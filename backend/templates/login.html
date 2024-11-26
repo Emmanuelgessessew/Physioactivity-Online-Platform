@@ -7,41 +7,46 @@
     <title>PhysioActivity - Login</title>
 </head>
 <body>
+    <!-- Navbar Section -->
     <header class="navbar">
         <div class="container">
-            <a href="/" class="logo">PhysioActivity</a>
+            <a href="{{ url_for('index') }}" class="logo">PhysioActivity</a>
             <nav>
                 <ul>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/services">Services</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                    <li><a href="/signup">Sign Up</a></li>
+                    <li><a href="{{ url_for('index') }}#about">About</a></li>
+                    <li><a href="{{ url_for('index') }}#services">Services</a></li>
+                    <li><a href="{{ url_for('index') }}#contact">Contact</a></li>
+                    <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- Login Form Section -->
     <section class="login">
         <div class="container">
             <h2>Login</h2>
-            <form action="/login" method="post">
+            <form action="{{ url_for('login') }}" method="POST">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
                 <label for="role">Role:</label>
                 <select id="role" name="role" required>
+                    <option value="" disabled selected>Select Role</option>
                     <option value="employee">Employee</option>
-                    <option value="employer">Employer</option>
+                    <option value="hr">HR</option>
+                    <option value="therapist">Therapist</option>
                 </select>
-                
+
                 <button type="submit">Login</button>
             </form>
         </div>
     </section>
 
+    <!-- Footer Section -->
     <footer>
         <div class="container">
             <p>&copy; 2024 PhysioActivity. All Rights Reserved.</p>

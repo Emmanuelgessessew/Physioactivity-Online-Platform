@@ -34,6 +34,41 @@ body {
   font-size: 16px;
   text-align: center;
 }
+/* Notifications dropdown */
+#notificationDropdown {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+#notificationDropdown p {
+  padding: 8px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+#notificationDropdown p:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.show {
+  display: block;
+}
 
 .navbar a:hover,
 #notificationButton:hover {

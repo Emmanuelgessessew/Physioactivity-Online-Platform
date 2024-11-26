@@ -35,67 +35,22 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Employee Requests -->
+                {% for request in requests %}
                 <tr>
-                    <td>Mohammed Salah</td>
-                    <td>EMP123</td>
-                    <td>2024-11-15</td>
-                    <td>10:00 AM</td>
+                    <td>{{ request.employee_name }}</td>
+                    <td>{{ request.work_id }}</td>
+                    <td>{{ request.preferred_date }}</td>
+                    <td>{{ request.preferred_time }}</td>
                     <td>
-                        <button class="accept-btn">Accept</button>
-                        <button class="decline-btn">Decline</button>
+                        <form action="{{ url_for('accept_request', request_id=request.id) }}" method="POST">
+                            <button type="submit" class="accept-btn">Accept</button>
+                        </form>
+                        <form action="{{ url_for('decline_request', request_id=request.id) }}" method="POST">
+                            <button type="submit" class="decline-btn">Decline</button>
+                        </form>
                     </td>
                 </tr>
-                <tr>
-                    <td>Virgil van Dijk</td>
-                    <td>EMP124</td>
-                    <td>2024-11-16</td>
-                    <td>11:00 AM</td>
-                    <td>
-                        <button class="accept-btn">Accept</button>
-                        <button class="decline-btn">Decline</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jordan Henderson</td>
-                    <td>EMP125</td>
-                    <td>2024-11-17</td>
-                    <td>2:00 PM</td>
-                    <td>
-                        <button class="accept-btn">Accept</button>
-                        <button class="decline-btn">Decline</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Sadio Mane</td>
-                    <td>EMP126</td>
-                    <td>2024-11-18</td>
-                    <td>3:30 PM</td>
-                    <td>
-                        <button class="accept-btn">Accept</button>
-                        <button class="decline-btn">Decline</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Roberto Firmino</td>
-                    <td>EMP127</td>
-                    <td>2024-11-19</td>
-                    <td>1:30 PM</td>
-                    <td>
-                        <button class="accept-btn">Accept</button>
-                        <button class="decline-btn">Decline</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Trent Alexander-Arnold</td>
-                    <td>EMP128</td>
-                    <td>2024-11-20</td>
-                    <td>4:00 PM</td>
-                    <td>
-                        <button class="accept-btn">Accept</button>
-                        <button class="decline-btn">Decline</button>
-                    </td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </section>
@@ -107,6 +62,6 @@
         </div>
     </footer>
 
-    <script src="employer.js"></script>
+    <script src="{{ url_for('static', filename='js/employer.js') }}"></script>
 </body>
 </html>

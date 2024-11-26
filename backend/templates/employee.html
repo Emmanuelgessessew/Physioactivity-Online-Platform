@@ -13,6 +13,7 @@
             <a href="{{ url_for('index') }}" class="logo">PhysioActivity</a>
             <nav>
                 <ul>
+                    <!-- Notifications Dropdown -->
                     <li id="notifications" class="dropdown">
                         <button id="notificationButton">Notifications</button>
                         <div id="notificationDropdown" class="dropdown-content">
@@ -21,6 +22,7 @@
                             <p><strong>Therapist:</strong> Please stretch before your next session.</p>
                         </div>
                     </li>
+                    <!-- Logout Button -->
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 </ul>
             </nav>
@@ -30,25 +32,29 @@
     <!-- Employee Portal Section -->
     <section class="employee-portal">
         <h2>Employee Physiotherapy Request</h2>
-        <form id="physioForm">
+        
+        <!-- Physio Request Form -->
+        <form id="physioForm" method="POST" action="{{ url_for('submit_request') }}">
             <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="Enter your name" required />
+            <input type="text" id="name" name="name" placeholder="Enter your name" required />
 
             <label for="workId">Work ID</label>
-            <input type="text" id="workId" placeholder="Enter your work ID" required />
+            <input type="text" id="workId" name="workId" placeholder="Enter your work ID" required />
 
             <label for="date">Preferred Date</label>
-            <input type="date" id="date" required />
+            <input type="date" id="date" name="preferred_date" required />
 
             <label for="time">Preferred Time</label>
-            <input type="time" id="time" required />
+            <input type="time" id="time" name="preferred_time" required />
 
             <button type="submit">Send Request</button>
         </form>
 
         <h2>Describe Your Pain or Feelings</h2>
-        <form id="painForm">
-            <textarea id="painDescription" placeholder="Describe your pain or feelings..." required></textarea>
+        
+        <!-- Pain Description Form -->
+        <form id="painForm" method="POST" action="{{ url_for('submit_pain_description') }}">
+            <textarea id="painDescription" name="pain_description" placeholder="Describe your pain or feelings..." required></textarea>
             <button type="submit">Send to Therapist</button>
         </form>
     </section>
@@ -60,6 +66,7 @@
         </div>
     </footer>
 
-    <script src="employee.js"></script>
+    <!-- Link to JavaScript for handling the functionality -->
+    <script src="{{ url_for('static', filename='js/employee.js') }}"></script>
 </body>
 </html>
