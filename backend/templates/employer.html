@@ -55,7 +55,7 @@
               <td>{{ request.employee_name }}</td>
               <td>{{ request.work_id }}</td>
               <td>{{ request.preferred_date.strftime('%Y-%m-%d') }}</td>
-              <td>{{ request.preferred_time.strftime('%H:%M') }}</td>
+              <td>{{ request.preferred_time }}</td>
               <td>{{ request.status }}</td>
               <td>
                 {% if request.status == 'pending' %}
