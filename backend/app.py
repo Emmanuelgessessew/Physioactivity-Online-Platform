@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime, date
 
 # Initialize Flask app and SQLAlchemy
 app = Flask(__name__)
@@ -11,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///physio_activity.db'  # SQLite
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Database models
+# Define models directly in app.py
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
@@ -20,12 +21,16 @@ class User(db.Model):
     role = db.Column(db.String(50), nullable=False)
 
 class Request(db.Model):
+    __tablename__ = 'request'
     id = db.Column(db.Integer, primary_key=True)
-    employee_name = db.Column(db.String(100), nullable=False)
-    work_id = db.Column(db.String(50), nullable=False)
-    preferred_date = db.Column(db.Date, nullable=False)
-    preferred_time = db.Column(db.Time, nullable=False)
-    status = db.Column(db.String(20), default='pending')
+    employee_name = db.Column(db.String(100))
+    work_id = db.Column(db.String(100))
+    preferred_date = db.Column(db.Date)  # Store date as a proper Date object
+    preferred_time = db.Column(db.String(10))
+    status = db.Column(db.String(50))
+
+    def __repr__(self):
+        return f'<Request {self.id}>'
 
 # Routes
 @app.route('/')
@@ -115,20 +120,30 @@ def employer_dashboard():
 
 @app.route('/submit_request', methods=['POST'])
 def submit_request():
-    if request.method == 'POST':
-        employee_name = request.form['name']
-        work_id = request.form['workId']
-        preferred_date = request.form['preferred_date']
-        preferred_time = request.form['preferred_time']
+    # Get form data
+    employee_name = request.form['name']
+    work_id = request.form['workId']
+    preferred_date_str = request.form['preferred_date']
+    preferred_time = request.form['preferred_time']
 
-        # Create new request for the employee
-        new_request = Request(employee_name=employee_name, work_id=work_id,
-                              preferred_date=preferred_date, preferred_time=preferred_time)
-        db.session.add(new_request)
-        db.session.commit()
+    # Convert the preferred_date string to a Python date object
+    preferred_date = datetime.strptime(preferred_date_str, '%Y-%m-%d').date()
 
-        flash("Physiotherapy request submitted successfully.", 'success')
-        return redirect(url_for('employee_dashboard'))
+    # Create a new request object
+    new_request = Request(
+        employee_name=employee_name,
+        work_id=work_id,
+        preferred_date=preferred_date,
+        preferred_time=preferred_time,
+        status='Pending'  # Default status when a request is created
+    )
+
+    # Add the new request to the session and commit to save it in the database
+    db.session.add(new_request)
+    db.session.commit()
+
+    # Redirect to employee portal or another page after submitting the request
+    return redirect(url_for('employee_dashboard'))
 
 @app.route('/logout')
 def logout():
