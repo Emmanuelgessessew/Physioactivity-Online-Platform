@@ -1,70 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/signup.css') }}"
+    />
     <title>PhysioActivity - Sign Up</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Navbar Section -->
     <header class="navbar">
-        <div class="container">
-            <a href="{{ url_for('index') }}" class="logo">PhysioActivity</a>
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('index') }}#about">About</a></li>
-                    <li><a href="{{ url_for('index') }}#services">Services</a></li>
-                    <li><a href="{{ url_for('index') }}#contact">Contact</a></li>
-                    <li><a href="{{ url_for('login') }}">Login</a></li>
-                </ul>
-            </nav>
-        </div>
+      <div class="container">
+        <a href="{{ url_for('index') }}" class="logo">PhysioActivity</a>
+        <nav>
+          <ul>
+            <li><a href="{{ url_for('index') }}#about">About</a></li>
+            <li><a href="{{ url_for('index') }}#services">Services</a></li>
+            <li><a href="{{ url_for('index') }}#contact">Contact</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <!-- Sign Up Form Section -->
     <section class="signup">
-        <div class="container">
-            <h2>Sign Up</h2>
-            <form action="{{ url_for('signup') }}" method="POST">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+      <div class="container">
+        <h2>Sign Up</h2>
+        <form action="{{ url_for('signup') }}" method="POST">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your username"
+            required
+          />
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required minlength="8">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            minlength="8"
+          />
 
-                <label for="role">Role:</label>
-                <select id="role" name="role" required>
-                    <option value="" disabled selected>Select Role</option>
-                    <option value="employee">Employee</option>
-                    <option value="hr">HR</option>
-                    <option value="therapist">Therapist</option>
-                </select>
+          <label for="role">Role:</label>
+          <select id="role" name="role" required>
+            <option value="" disabled selected>Select Role</option>
+            <option value="employee">Employee</option>
+            <option value="hr">HR</option>
+            <option value="therapist">Therapist</option>
+          </select>
 
-                <button type="submit">Sign Up</button>
-            </form>
+          <button type="submit">Sign Up</button>
+        </form>
 
-            <!-- Display flash messages -->
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    <div class="flash-messages">
-                        {% for category, message in messages %}
-                            <div class="flash-message {{ category }}">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endwith %}
+        <!-- Display flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+          <div class="flash-message {{ category }}">{{ message }}</div>
+          {% endfor %}
         </div>
+        {% endif %} {% endwith %}
+      </div>
     </section>
 
     <!-- Footer Section -->
     <footer>
-        <div class="container">
-            <p>&copy; 2024 PhysioActivity. All Rights Reserved.</p>
-        </div>
+      <div class="container">
+        <p>&copy; 2024 PhysioActivity. All Rights Reserved.</p>
+      </div>
     </footer>
-</body>
+  </body>
 </html>
