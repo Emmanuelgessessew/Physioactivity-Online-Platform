@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Notifications dropdown functionality
+    // Notifications dropdown functionality.
     const notificationButton = document.getElementById("notificationButton");
     const notificationDropdown = document.getElementById("notificationDropdown");
 
