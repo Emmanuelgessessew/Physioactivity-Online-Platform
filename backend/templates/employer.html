@@ -56,22 +56,36 @@
               <td>{{ request.work_id }}</td>
               <td>{{ request.preferred_date.strftime('%Y-%m-%d') }}</td>
               <td>{{ request.preferred_time }}</td>
-              <td>{{ request.status }}</td>
+              <td class="status">{{ request.status.capitalize() }}</td>
               <td>
-                {% if request.status == 'pending' %}
+                {% if request.status.lower() == 'pending' %}
+                <!-- Accept button form -->
                 <form
                   action="{{ url_for('accept_request', request_id=request.id) }}"
                   method="POST"
                   style="display: inline"
                 >
-                  <button type="submit" class="accept-btn">Accept</button>
+                  <button
+                    type="submit"
+                    class="accept-btn"
+                    aria-label="Accept Request"
+                  >
+                    Accept
+                  </button>
                 </form>
+                <!-- Decline button form -->
                 <form
                   action="{{ url_for('decline_request', request_id=request.id) }}"
                   method="POST"
                   style="display: inline"
                 >
-                  <button type="submit" class="decline-btn">Decline</button>
+                  <button
+                    type="submit"
+                    class="decline-btn"
+                    aria-label="Decline Request"
+                  >
+                    Decline
+                  </button>
                 </form>
                 {% else %}
                 <span class="status-message"

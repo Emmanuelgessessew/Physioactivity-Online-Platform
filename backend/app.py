@@ -150,6 +150,44 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
+@app.route('/accept_request/<int:request_id>', methods=['POST'])
+def accept_request(request_id):
+    # Retrieve the request object from the database
+    request_obj = Request.query.get_or_404(request_id)
+    
+    # Ensure only authorized users can access this route
+    if session.get('role') not in ['hr', 'therapist']:
+        flash("Unauthorized access.", "error")
+        return redirect(url_for('login'))
+    
+    # Update the request status to "accepted"
+    request_obj.status = 'accepted'
+    db.session.commit()
+    
+    flash(f"Request {request_id} has been accepted.", "success")
+    return redirect(url_for('employer_dashboard'))
+
+@app.route('/decline_request/<int:request_id>', methods=['POST'])
+def decline_request(request_id):
+    # Retrieve the request object from the database
+    request_obj = Request.query.get_or_404(request_id)
+    
+    # Ensure only authorized users can access this route
+    if session.get('role') not in ['hr', 'therapist']:
+        flash("Unauthorized access.", "error")
+        return redirect(url_for('login'))
+    
+    # Update the request status to "declined"
+    request_obj.status = 'declined'
+    db.session.commit()
+    
+    flash(f"Request {request_id} has been declined.", "success")
+    return redirect(url_for('employer_dashboard'))
+
+@app.route('/terms')
+def terms():
+    return render_template('terms.html')  # Ensure you have a terms.html file in the templates folder
+
 # Initialize database
 if __name__ == '__main__':
     with app.app_context():

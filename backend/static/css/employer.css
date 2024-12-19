@@ -52,7 +52,7 @@ body {
 /* Employer Portal Styles */
 .employer-portal {
     padding: 20px;
-    max-width: 900px;  /* Adjusted for a more centered and compact layout */
+    max-width: 900px; /* Centered and compact layout */
     margin: 30px auto;
     background: white;
     border-radius: 8px;
@@ -62,12 +62,14 @@ body {
 .employer-portal h2 {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 24px; /* Slightly larger for emphasis */
+    color: #333;
 }
 
 table {
     width: 100%;
-    max-width: 1000px; /* Added max-width to prevent table from stretching too wide */
-    margin: 0 auto;  /* Center the table */
+    max-width: 1000px; /* Prevent table from stretching too wide */
+    margin: 0 auto; /* Center the table */
     border-collapse: collapse;
 }
 
@@ -80,10 +82,19 @@ th, td {
     text-align: left;
     padding: 10px;
     border: 1px solid #ddd;
+    vertical-align: middle; /* Align content centrally */
+}
+
+th {
+    font-size: 16px; /* Slightly larger for header emphasis */
 }
 
 tbody tr:hover {
     background-color: #f1f1f1;
+}
+
+tbody tr td.status {
+    font-weight: bold; /* Highlight status text */
 }
 
 /* Accept and Decline Button Styles */
@@ -94,11 +105,12 @@ tbody tr:hover {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 4px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .accept-btn:hover {
     background-color: #45a049; /* Darker green when hovered */
+    transform: scale(1.05); /* Slight scaling effect */
 }
 
 .decline-btn {
@@ -108,11 +120,39 @@ tbody tr:hover {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 4px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .decline-btn:hover {
     background-color: #e53935; /* Darker red when hovered */
+    transform: scale(1.05); /* Slight scaling effect */
+}
+
+/* Flash Messages */
+.flash-messages {
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 800px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.flash-message {
+    margin-bottom: 10px;
+    padding: 10px;
+    color: white;
+}
+
+.flash-message.success {
+    background-color: #4caf50;
+}
+
+.flash-message.error {
+    background-color: #f44336;
+}
+
+.flash-message.warning {
+    background-color: #ff9800;
 }
 
 /* Footer */
@@ -121,4 +161,36 @@ footer {
     color: white;
     text-align: center;
     padding: 20px 0;
+    margin-top: 40px; /* Add spacing from content */
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+    }
+
+    .navbar nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar nav ul li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .employer-portal {
+        padding: 15px;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+
+    .accept-btn, .decline-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
 }

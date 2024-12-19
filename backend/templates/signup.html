@@ -66,6 +66,13 @@
             <option value="therapist">Therapist</option>
           </select>
 
+          <label>
+            <input type="checkbox" name="terms" required /> I agree to the
+            <a href="{{ url_for('terms') }}" target="_blank"
+              >Terms and Conditions</a
+            >
+          </label>
+
           <button type="submit">Sign Up</button>
         </form>
 
