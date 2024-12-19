@@ -3,111 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <!-- Link to the external CSS -->
-    <link rel="stylesheet" href="terms.css" />
-    <!-- Link to the terms-specific CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/signup.css') }}"
+    />
     <title>Terms and Conditions - PhysioActivity</title>
   </head>
   <body>
-    <!-- Navbar -->
+    <!-- Navbar Section -->
     <header class="navbar">
       <div class="container">
-        <a href="index.html" class="logo">PhysioActivity</a>
+        <a href="{{ url_for('index') }}" class="logo">PhysioActivity</a>
         <nav>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Sign Up</a></li>
+            <li><a href="{{ url_for('index') }}#about">About</a></li>
+            <li><a href="{{ url_for('index') }}#services">Services</a></li>
+            <li><a href="{{ url_for('index') }}#contact">Contact</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('terms') }}">Terms and Conditions</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <!-- Terms and Conditions Section -->
+    <!-- Terms and Conditions Content -->
     <section class="terms">
-      <h2>Terms and Conditions</h2>
       <div class="container">
-        <ul>
-          <li>
-            <strong>1. Acceptance of Terms:</strong> By using this platform, you
-            agree to comply with these terms.
-            <span class="read-more" onclick="toggleDetails('detail1')"
-              >Read More</span
-            >
-            <p id="detail1" class="hidden">
-              This platform is intended for informational purposes only and does
-              not replace professional medical advice.
-            </p>
-          </li>
-          <li>
-            <strong>2. Not a Substitute for Professional Help:</strong> The
-            recommendations provided are not a substitute for professional
-            medical advice, diagnosis, or treatment.
-            <span class="read-more" onclick="toggleDetails('detail2')"
-              >Read More</span
-            >
-            <p id="detail2" class="hidden">
-              Always seek the advice of your physician or other qualified health
-              provider with any questions you may have regarding a medical
-              condition.
-            </p>
-          </li>
-          <li>
-            <strong>3. User Responsibilities:</strong> Users must provide
-            accurate and complete health information to receive appropriate
-            recommendations.
-            <span class="read-more" onclick="toggleDetails('detail3')"
-              >Read More</span
-            >
-            <p id="detail3" class="hidden">
-              You are responsible for the accuracy of the information you
-              provide.
-            </p>
-          </li>
-          <li>
-            <strong>4. Limitation of Liability:</strong> PhysioActivity will not
-            be liable for any injuries or damages resulting from the use of the
-            recommendations provided.
-            <span class="read-more" onclick="toggleDetails('detail4')"
-              >Read More</span
-            >
-            <p id="detail4" class="hidden">
-              Use of this platform is at your own risk.
-            </p>
-          </li>
-          <li>
-            <strong>5. Changes to Terms:</strong> We reserve the right to modify
-            these terms at any time.
-            <span class="read-more" onclick="toggleDetails('detail5')"
-              >Read More</span
-            >
-            <p id="detail5" class="hidden">
-              Changes will be effective immediately upon posting on this page.
-            </p>
-          </li>
-        </ul>
+        <h2>Terms and Conditions</h2>
+
+        <p>Welcome to PhysioActivity!</p>
+
+        <p>These Terms and Conditions govern your use of our website and services. Please read these terms carefully before using our website and services.</p>
+
+        <h3>1. Acceptance of Terms</h3>
+        <p>By accessing and using this website, you agree to comply with and be bound by these Terms and Conditions. If you do not agree with any of these terms, please do not use our services.</p>
+
+        <h3>2. User Registration</h3>
+        <p>To access certain features of our website, you may be required to create an account. You must provide accurate and complete information during the registration process and keep your account details up to date.</p>
+
+        <h3>3. Use of the Service</h3>
+        <p>You agree to use the PhysioActivity services in a lawful manner and only for legitimate purposes. You may not engage in any activities that could harm, disrupt, or interfere with the proper functioning of our website and services.</p>
+
+        <h3>4. Privacy and Data Protection</h3>
+        <p>Your privacy is important to us. Please review our Privacy Policy to understand how we collect, use, and protect your personal information.</p>
+
+        <h3>5. Account Security</h3>
+        <p>You are responsible for maintaining the confidentiality of your account credentials. Please notify us immediately if you suspect any unauthorized access to your account.</p>
+
+        <h3>6. Payment and Billing</h3>
+        <p>Some of the services offered by PhysioActivity may require payment. By using paid services, you agree to pay the applicable fees for the service. Payment processing will be handled securely through third-party payment providers.</p>
+
+        <h3>7. Termination of Account</h3>
+        <p>We reserve the right to suspend or terminate your account if you violate any of these Terms and Conditions or if your use of the services is deemed harmful to our website or other users.</p>
+
+        <h3>8. Limitation of Liability</h3>
+        <p>PhysioActivity will not be liable for any damages arising from the use or inability to use our services, including but not limited to any loss of data, income, or profits.</p>
+
+        <h3>9. Changes to Terms</h3>
+        <p>We reserve the right to modify these Terms and Conditions at any time. Any changes will be posted on this page, and your continued use of the services constitutes acceptance of those changes.</p>
+
+        <h3>10. Governing Law</h3>
+        <p>These Terms and Conditions are governed by the laws of [Insert Country/State]. Any legal disputes will be resolved in the competent courts of [Insert Country/State].</p>
+
+        <h3>Contact Us</h3>
+        <p>If you have any questions about these Terms and Conditions, please contact us at <a href="mailto:support@physioactivity.com">support@physioactivity.com</a>.</p>
+
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Footer Section -->
+    <footer>
       <div class="container">
         <p>&copy; 2024 PhysioActivity. All Rights Reserved.</p>
       </div>
     </footer>
+  </body>
+</html>
 
-    <script>
-      function toggleDetails(detailId) {
-        const detailElement = document.getElementById(detailId);
-        if (detailElement.classList.contains("hidden")) {
-          detailElement.classList.remove("hidden");
-        } else {
-          detailElement.classList.add("hidden");
-        }
-      }
-    </script>
+    </footer>
   </body>
 </html>

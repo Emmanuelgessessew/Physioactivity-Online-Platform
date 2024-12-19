@@ -3,46 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="employee.css" />
-    <title>PhysioActivity - Employee Recommendations</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/employee.css') }}"
+    />
+    <title>PhysioActivity - Employee Dashboard</title>
   </head>
   <body>
     <!-- Navbar -->
     <header class="navbar">
       <div class="container">
-        <a href="index.html" class="logo">PhysioActivity</a>
+        <a href="{{ url_for('index') }}" class="logo">PhysioActivity</a>
         <nav>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="signup.html">Sign Up</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <!-- Employee Health Input Section -->
-    <section class="employee-health">
+    <!-- Employee Dashboard Section -->
+    <section class="employee-dashboard">
       <div class="container">
-        <h2>Health Information Input</h2>
-        <form id="healthForm">
-          <textarea
-            id="healthDetails"
-            placeholder="Enter your health issues here..."
-            required
-          ></textarea>
-          <button type="submit">Get Recommendations</button>
-        </form>
+        <h2>Your Physiotherapy Requests</h2>
 
-        <h3>Your Recommendations:</h3>
-        <ul id="recommendationList"></ul>
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+          <div class="flash-message {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
 
-        <p>
-          By using this service, you agree to our
-          <a href="terms.html" target="_blank">Terms and Conditions</a>.
-        </p>
+        <!-- Requests Table -->
+        <table id="requestsTable">
+          <thead>
+            <tr>
+              <th>Work ID</th>
+              <th>Preferred Date</th>
+              <th>Preferred Time</th>
+              <th>Status</th>
+              <th>Notification</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for request in requests %}
+            <tr>
+              <td>{{ request.work_id }}</td>
+              <td>{{ request.preferred_date.strftime('%Y-%m-%d') }}</td>
+              <td>{{ request.preferred_time }}</td>
+              <td class="status">{{ request.status.capitalize() }}</td>
+              <td class="notification">
+                {% if request.notification %} {{ request.notification }} {% else
+                %} No update yet. {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -53,6 +73,6 @@
       </div>
     </footer>
 
-    <script src="employee.js"></script>
+    <script src="{{ url_for('static', filename='js/employee.js') }}"></script>
   </body>
 </html>
